@@ -1,6 +1,7 @@
 
 
 #include "scene_collection.h"
+#include "benchmark.h"
 
 void SceneCollection::add_scenes(GLFWwindow* window){
     scenes_.push_back(new SceneDefaultOptions(window));

@@ -8,6 +8,7 @@
 #include "create_window.h"
 #include "log.h"
 #include "scene_collection.h"
+#include "benchmark.h"
 
 void processInput(GLFWwindow *window);
 
@@ -29,7 +30,8 @@ int main(int argc, char *argv[]){
     }
 
     SceneCollection scenes(window);
-
+    scenes.register_scenes();
+    Benchmark::print();
     //scenes.print();
 
 
