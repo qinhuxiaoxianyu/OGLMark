@@ -9,8 +9,11 @@
 #include "log.h"
 #include "scene_collection.h"
 #include "benchmark.h"
+#include "benchmark_collection.h"
+#include "main_loop.h"
 
 void processInput(GLFWwindow *window);
+void do_benchmark(GLFWwindow *window);
 
 int main(int argc, char *argv[]){
     if (!GlobalOption::parse_args(argc,argv)){
@@ -31,10 +34,10 @@ int main(int argc, char *argv[]){
 
     SceneCollection scenes(window);
     scenes.register_scenes();
-    Benchmark::print();
+    //Benchmark::print();
     //scenes.print();
 
-
+    do_benchmark(window);
 
 
 
@@ -75,4 +78,19 @@ void processInput(GLFWwindow *window)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+}
+
+void do_benchmark(GLFWwindow *window){
+    BenchmarkCollection benchmark_collection;
+    MainLoop *loop;
+
+    benchmark_collection.populate_from_options();
+    //benchmark_collection.print();//fortest
+
+    if (benchmark_collection.needs_decoration())
+        ;//todo something
+    else   
+        loop = new MainLoop(window, benchmark_collection.benchmarks());
+
+    while (loop->step());
 }

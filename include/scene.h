@@ -31,10 +31,10 @@ public:
     virtual void print();//for test
 
     std::map<std::string, Option> options_;//fortest
-
+    std::string name_;//fortest
 protected:
     GLFWwindow* window_;
-    std::string name_;
+    //std::string name_;
     //std::map<std::string, Option> options_;
     double startTime_;
     double lastUpdateTime_;
