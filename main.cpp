@@ -30,6 +30,8 @@ int main(int argc, char *argv[]){
 
     SceneCollection scenes(window);
 
+    //scenes.print();
+
 
 
 

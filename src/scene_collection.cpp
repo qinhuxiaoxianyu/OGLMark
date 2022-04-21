@@ -3,8 +3,7 @@
 #include "scene_collection.h"
 
 void SceneCollection::add_scenes(GLFWwindow* window){
-    Scene *sce;
-    scenes_.push_back(sce);
+    scenes_.push_back(new SceneDefaultOptions(window));
 }
 
 SceneCollection::SceneCollection(GLFWwindow* window){
@@ -15,6 +14,16 @@ SceneCollection::~SceneCollection(){
     //销毁vector
 }
 
-void register_scenes(){
-    //todo
+void SceneCollection::register_scenes(){
+    for (std::vector<Scene*>::const_iterator iter = scenes_.begin(); iter != scenes_.end(); iter++){
+        Benchmark::register_scene(**iter);
+    }
+}
+
+const std::vector<Scene*>& SceneCollection::get(){
+    return scenes_;
+}
+
+void SceneCollection::print(){//fortest
+    scenes_[0]->print();
 }

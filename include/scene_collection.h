@@ -19,6 +19,9 @@ public:
     ~SceneCollection();
 
     void register_scenes();
+    const std::vector<Scene*>& get();
+
+    void print();//for test
 };
  
 

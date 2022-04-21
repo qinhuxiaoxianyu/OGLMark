@@ -1,12 +1,19 @@
 #include "scene.h"
 
 Scene::Option::Option(const std::string &nam, const std::string &val, const std::string &desc,
-    const std::string &values = ""):name(nam), value(val), default_value(val), description(desc),
-    set(false){
+    const std::string &values):name(nam), value(val), default_value(val), description(desc),
+    set(false){//函数声明时可以有默认值，定义时不能有
     //todo something about acceptabel_values
-    acceptable_values.push_back("test value!");
+    acceptable_values.push_back("value one");//util::split
+    acceptable_values.push_back("value two");
+    acceptable_values.push_back("value three");
 }
 
+const std::string& Scene::name(){
+    return name_;
+}
+
+void Scene::print(){/*fortest*/};
 
 Scene::Scene(GLFWwindow* window, const std::string &name):
     window_(window), name_(name), startTime_(0), lastUpdateTime_(0), currentFrame_(0), running_(0),
@@ -38,6 +45,5 @@ Scene::Scene(GLFWwindow* window, const std::string &name):
                                            "The width of each glyph in the title");
 }
 
-Scene::~Scene(){
-    //不做任何事
+Scene::~Scene(){//不做任何事
 }

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <list>
 
 #include <GLFW/glfw3.h>
 
@@ -24,6 +25,11 @@ public:
         std::vector<std::string> acceptable_values;
         bool set;
     };
+
+    const std::string &name();
+
+    virtual void print();//for test
+
 protected:
     GLFWwindow* window_;
     std::string name_;
@@ -38,6 +44,18 @@ protected:
     Scene(GLFWwindow* window, const std::string &name);
 private:
     /* data */
+};
+
+class SceneDefaultOptions : public Scene
+{
+public:
+    SceneDefaultOptions(GLFWwindow* window);
+    ~SceneDefaultOptions()=default;
+
+    void print();//for test
+private:
+    /* data */
+    std::list<std::pair<std::string, std::string> > defaultOptions_;
 };
 
 #endif
