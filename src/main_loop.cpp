@@ -5,6 +5,8 @@ MainLoop::MainLoop(GLFWwindow *window, const std::vector<Benchmark *> &benchmark
     reset();
 }
 
+void MainLoop::before_scene_setup(){}
+
 void MainLoop::reset(){
     scene_ = 0;
     scene_setup_status_ = SceneSetupStatusUnknown;
@@ -26,7 +28,10 @@ bool MainLoop::step(){
         }
 
         if (bench_iter_ != benchmarks_.end()){
-            
+            before_scene_setup();
+            /* if (!Options::reuse_context)
+                canvas_.reset();*/
+            scene_ = &((*bench_iter_)->setup_scene());
         }
     }
 }

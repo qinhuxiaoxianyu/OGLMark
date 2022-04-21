@@ -14,6 +14,7 @@ public:
     MainLoop(GLFWwindow *window, const std::vector<Benchmark *> &benchmarks);
     virtual ~MainLoop()=default;
 
+    virtual void before_scene_setup();
     void reset();
     bool step();
 protected:
