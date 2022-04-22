@@ -9,11 +9,85 @@ Scene::Option::Option(const std::string &nam, const std::string &val, const std:
     acceptable_values.push_back("value three");
 }
 
+bool Scene::supported(bool show_errors){
+    static_cast<void>(show_errors);
+    return true;
+}
+
+bool Scene::load(){
+    return true;
+}
+
+bool Scene::setup(){
+    return true;
+}
+
+void Scene::update(){
+    //todo somethingScene::
+}
+
+void Scene::draw(){
+    //nothing
+}
+
+bool Scene::set_option(const std::string &opt, const std::string &val){
+    std::map<std::string, Option>::iterator iter = options_.find(opt);
+
+    if (iter == options_.end())
+        return false;
+
+    std::vector<std::string>& values(iter->second.acceptable_values);
+
+    if (!values.empty() && std::find(values.begin(), values.end(), val) == values.end()){
+        return false;
+    }
+
+    iter->second.value = val;
+    iter->second.set = true;
+
+    return true;
+}
+
+bool Scene::running(){
+    return running_;
+}
+
 const std::string& Scene::name(){
     return name_;
 }
 
-void Scene::print(){/*fortest*/};
+void Scene::reset_options(){
+    Option *opt = nullptr;
+    for (std::map<std::string, Option>::iterator iter = options_.begin(); iter != options_.end(); iter++){
+        opt = &(iter->second);
+
+        opt->value = opt->default_value;
+        opt->set = false;
+    }
+}
+
+bool Scene::set_option_default(const std::string &opt, const std::string &val){
+    std::map<std::string, Scene::Option>::iterator iter = options_.find(opt);
+
+    if (iter == options_.end())
+        return false;
+
+    std::vector<std::string> &values = iter->second.acceptable_values;
+
+    if (!values.empty() && 
+        std::find(values.begin(), values.end(), val) == values.end())
+    {
+            return false;
+    }
+
+    iter->second.default_value = val;
+
+    return true;   
+}
+
+const std::map<std::string, Scene::Option>& Scene::options(){
+    return options_;
+}
 
 Scene::Scene(GLFWwindow* window, const std::string &name):
     window_(window), name_(name), startTime_(0), lastUpdateTime_(0), currentFrame_(0), running_(0),

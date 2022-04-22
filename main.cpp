@@ -52,33 +52,18 @@ int main(int argc, char *argv[]){
 
 
 
-
+/*
     while (!glfwWindowShouldClose(window))
     {
-        // input
-        // -----
-        processInput(window);
 
-        // render
-        // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
     }
-    glfwTerminate();
+    */
+    //glfwTerminate();
 
     return 0;
 }
 
-void processInput(GLFWwindow *window)
-{
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-}
+
 
 void do_benchmark(GLFWwindow *window){
     BenchmarkCollection benchmark_collection;

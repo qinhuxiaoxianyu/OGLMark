@@ -32,6 +32,37 @@ bool MainLoop::step(){
             /* if (!Options::reuse_context)
                 canvas_.reset();*/
             scene_ = &((*bench_iter_)->setup_scene());
+            if (!scene_->running()){
+                if (!scene_->supported(false))
+                    scene_setup_status_ = SceneSetupStatusUnsupported;
+                else
+                    scene_setup_status_ = SceneSetupStatusFailure;
+            }
+            else {
+                scene_setup_status_ = SceneSetupStatusSuccess;
+            }
+            //todo something
+            //after_scene_setup();log_scene_info();
+        }
+        else {
+            return false;
         }
     }
+
+    //bool should_quit = canvas_.should_quit();
+    //processInput(window);
+
+    if (scene_ ->running() /*&& !should_quit*/)
+        draw();
+
+    return true;
+}
+
+void MainLoop::draw(){
+    //window_.clear();
+
+    scene_->draw();
+    scene_->update();
+
+    //window_.update();
 }

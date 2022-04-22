@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <algorithm>
 
 #include <GLFW/glfw3.h>
 
@@ -26,9 +27,19 @@ public:
         bool set;
     };
 
+    virtual bool supported(bool show_errors);
+    virtual bool load();
+    virtual bool setup();
+    virtual void update();
+    virtual void draw();
+    virtual bool set_option(const std::string &opt, const std::string &val);
+    bool running();
     const std::string &name();
+    void reset_options();
+    bool set_option_default(const std::string &opt, const std::string &val);
+    const std::map<std::string, Option>& options();
 
-    virtual void print();//for test
+    virtual void print(){}//for test
 
     std::map<std::string, Option> options_;//fortest
     std::string name_;//fortest
@@ -53,7 +64,9 @@ class SceneDefaultOptions : public Scene
 public:
     SceneDefaultOptions(GLFWwindow* window);
     ~SceneDefaultOptions()=default;
-
+    bool set_option(const std::string &opt, const std::string &val);
+    bool setup();
+    void draw();
     void print();//for test
 private:
     /* data */

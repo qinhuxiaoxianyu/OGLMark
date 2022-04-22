@@ -17,6 +17,7 @@ public:
     virtual void before_scene_setup();
     void reset();
     bool step();
+    virtual void draw();
 protected:
     enum SceneSetupStatus {
         SceneSetupStatusUnknown,
