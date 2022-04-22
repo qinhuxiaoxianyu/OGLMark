@@ -12,16 +12,12 @@
 #include "benchmark_collection.h"
 #include "main_loop.h"
 
-void processInput(GLFWwindow *window);
+//void processInput(GLFWwindow *window);
 void do_benchmark(GLFWwindow *window);
 
 int main(int argc, char *argv[]){
     if (!GlobalOption::parse_args(argc,argv)){
-        Log::info("error!");
         return -1;
-    }
-    else{
-        Log::info("succed!");    
     }
 
     GlobalOption::print_help();
