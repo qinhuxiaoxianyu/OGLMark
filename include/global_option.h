@@ -18,17 +18,17 @@ public:
         FrameEndFinish,
         FrameEndReadPixels
     };
-
+/*
     static int width;
     static int height;
-
+*/
     static bool parse_args(int argc, char **argv);
     static void print_help();
 
     static std::vector<std::string> benchmarks;
     static std::vector<std::string> benchmark_files;
     static bool validate;
-    //static std::string data_path;
+    static std::string data_path;
     static FrameEnd frame_end;
     static std::pair<int,int> size;
     static bool list_scenes;
